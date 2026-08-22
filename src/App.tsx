@@ -12,7 +12,7 @@ import { Hero } from './sections/Hero';
 import { Work } from './sections/Work';
 import { About } from './sections/About';
 import { Stack } from './sections/Stack';
-import { Experience } from './sections/Experience';
+import { Testimonials } from './sections/Testimonials';
 import { Contact } from './sections/Contact';
 
 const CustomCursor = lazy(() =>
@@ -56,7 +56,7 @@ function Site() {
           <Work />
           <About />
           <Stack />
-          <Experience />
+          <Testimonials />
           <Contact />
         </main>
 

@@ -2,28 +2,37 @@ import type { LocalizedContent } from './portfolio';
 
 export const en: LocalizedContent = {
   profile: {
-    name: 'Your Name',
+    name: 'Alexandr Filinskyi',
     kicker: 'Portfolio / 2026',
     titleLines: ['Software', 'Engineer'],
     tagline: 'Building software, automation and digital products.',
     status: 'Open to new projects',
-    location: 'Your City, Country',
+    location: 'Ukraine',
     primaryCta: { label: 'View Work', href: '#work' },
     secondaryCta: { label: 'Contact', href: '#contact' },
   },
   about: {
     statement: 'I build software that solves real problems.',
     paragraphs: [
-      'Short description goes here. Two or three sentences about what you do, how you work and what kind of problems you enjoy solving.',
-      'Second paragraph placeholder. Mention your focus areas, the type of teams or clients you work with, and what you are looking for next.',
+      'I am a full-stack engineer with 7+ years of experience. I design and ship web applications on Python (FastAPI, Flask) and React / TypeScript, build Telegram and Discord bots, write parsers and browser automation, and wire it all together with APIs, databases and Docker.',
+      'I work remotely with clients and teams worldwide — from a one-line brief to a production launch, including load testing and deployment. I value clear communication, realistic deadlines and solutions that keep working after delivery.',
     ],
     specialties: ['Web Applications', 'Automation & Scripting', 'APIs & Integrations', 'Developer Tooling'],
     facts: [
-      { label: 'Location', value: 'Your City, Country' },
-      { label: 'Experience', value: 'X+ years' },
-      { label: 'Focus', value: 'Your focus area' },
+      { label: 'Location', value: 'Ukraine' },
+      { label: 'Experience', value: '7+ years' },
+      { label: 'Work format', value: 'Remote · worldwide' },
       { label: 'Availability', value: 'Open to work' },
     ],
+    team: {
+      label: 'How I work',
+      title: 'Solo by default. A team when it speeds things up.',
+      text: 'When a project calls for it, I bring in a small trusted team I have worked with for years — frontend, backend and automation run in parallel and ship faster. Most projects I deliver myself; the team joins only where it genuinely helps.',
+      modes: [
+        { name: 'Solo', tag: 'Default', description: 'One point of contact, full ownership of the code and the result.' },
+        { name: 'Team', tag: 'On demand', description: 'Parallel tracks for bigger scopes and tighter deadlines — same quality bar, same contact person.' },
+      ],
+    },
   },
   projects: {
     'project-01': {
@@ -51,7 +60,7 @@ export const en: LocalizedContent = {
     automation: 'Automation',
     databases: 'Databases',
     devops: 'DevOps',
-    tools: 'Tools',
+    tools: 'Tools & Mobile',
   },
   experience: [
     {
@@ -80,7 +89,7 @@ export const en: LocalizedContent = {
   contact: {
     headlineLines: ["Let's", 'build', 'something.'],
     description: 'Have a project, an idea or a role in mind? Send a message — I usually reply within a day.',
-    cta: { label: 'Start a project', href: 'mailto:hello@example.com' },
+    cta: { label: 'Start a project', href: 'mailto:Filinskyi.a@gmail.com' },
   },
   marquee: ['Software', 'Automation', 'Web Apps', 'APIs', 'Tooling', 'Integrations'],
 };

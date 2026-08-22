@@ -1,4 +1,4 @@
-export type SocialPlatform = 'github' | 'linkedin' | 'telegram' | 'email' | 'twitter' | 'website';
+export type SocialPlatform = 'github' | 'linkedin' | 'telegram' | 'email' | 'twitter' | 'website' | 'freelancehunt';
 
 export interface SocialLink {
   platform: SocialPlatform;
@@ -33,6 +33,13 @@ export interface About {
   specialties: readonly string[];
   /** Small metadata facts shown beside the text. */
   facts: readonly { label: string; value: string }[];
+  /** "Solo / Team" panel: how the work gets staffed. */
+  team: {
+    label: string;
+    title: string;
+    text: string;
+    modes: readonly { name: string; tag: string; description: string }[];
+  };
 }
 
 export interface Project {

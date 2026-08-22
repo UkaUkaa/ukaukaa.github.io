@@ -1,5 +1,5 @@
-import { motion, type Variants } from 'framer-motion';
-import type { ReactNode } from 'react';
+import { motion, useInView, type Variants } from 'framer-motion';
+import { useRef, type ReactNode } from 'react';
 import { cn } from '../utils/cn';
 import { revealEase as EASE } from '../utils/motion';
 
@@ -57,8 +57,14 @@ export function LineReveal({
   stagger = 0.1,
   immediate = false,
 }: LineRevealProps) {
+  // Observe the (unclipped) wrapper, not the translated lines: a line shifted 110% down and
+  // clipped by overflow-hidden never intersects the viewport, so it would never animate in.
+  const ref = useRef<HTMLSpanElement>(null);
+  const inView = useInView(ref, { once: true, amount: 0.2 });
+  const show = immediate || inView;
+
   return (
-    <span className={cn('block', className)}>
+    <span ref={ref} className={cn('block', className)}>
       {/* Screen readers get the joined sentence; the animated lines are decorative. */}
       <span className="sr-only">{lines.join(' ')}</span>
       {lines.map((line, i) => (
@@ -66,9 +72,7 @@ export function LineReveal({
           <motion.span
             className={cn('block will-change-transform', lineClassName)}
             initial={{ y: '110%', rotate: 2 }}
-            {...(immediate
-              ? { animate: { y: 0, rotate: 0 } }
-              : { whileInView: { y: 0, rotate: 0 }, viewport: { once: true, amount: 0.6 } })}
+            animate={show ? { y: 0, rotate: 0 } : undefined}
             transition={{ duration: 1.1, ease: EASE, delay: delay + i * stagger }}
             style={{ transformOrigin: 'left bottom' }}
           >

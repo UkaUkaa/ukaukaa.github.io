@@ -1,4 +1,4 @@
-import { Github, Linkedin, Mail, Send, Globe, AtSign, type LucideProps } from 'lucide-react';
+import { Github, Linkedin, Mail, Send, Globe, AtSign, Briefcase, type LucideProps } from 'lucide-react';
 import type { SocialPlatform } from '../data/types';
 
 const ICONS: Record<SocialPlatform, React.ComponentType<LucideProps>> = {
@@ -8,6 +8,7 @@ const ICONS: Record<SocialPlatform, React.ComponentType<LucideProps>> = {
   telegram: Send,
   website: Globe,
   twitter: AtSign,
+  freelancehunt: Briefcase,
 };
 
 export function SocialIcon({ platform, ...props }: { platform: SocialPlatform } & LucideProps) {

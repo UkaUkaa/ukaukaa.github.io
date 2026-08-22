@@ -56,5 +56,6 @@ export const navLinks = [
   { key: 'work', href: '#work', id: 'work' },
   { key: 'about', href: '#about', id: 'about' },
   { key: 'stack', href: '#stack', id: 'stack' },
+  { key: 'testimonials', href: '#testimonials', id: 'testimonials' },
   { key: 'contact', href: '#contact', id: 'contact' },
 ] as const;
