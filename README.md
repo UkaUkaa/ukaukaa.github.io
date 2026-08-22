@@ -112,7 +112,7 @@ Design tokens are CSS variables in `src/styles/index.css` under `@theme`. Change
 
 ## SEO configuration
 
-Search for `USERNAME` and `Your Name` and replace them in:
+SEO lives in the following files:
 
 - `index.html` — title, description, keywords, author, canonical, Open Graph, Twitter, JSON-LD (`Person` + `WebSite`)
 - `public/robots.txt` — sitemap URL
@@ -125,15 +125,15 @@ Replace `public/og-image.png` with your own 1200×630 image.
 
 ## Deploying to GitHub Pages
 
-This project targets a **user site**: `https://USERNAME.github.io/`.
+This project targets a **user site**: `https://ukaukaa.github.io/`.
 
-1. Create a repository named exactly `USERNAME.github.io` (your GitHub username, lowercase).
+1. The repository must be named exactly `<github-username>.github.io` (lowercase) — for this account `ukaukaa.github.io`.
 2. Push this project to the `main` branch.
 3. In the repository: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
 4. Every push to `main` runs `.github/workflows/deploy.yml`: install → lint → build → deploy `dist/`.
 
 `vite.config.ts` uses `base: "/"`, which is correct for a user site.
-For a **project site** (`https://USERNAME.github.io/repo-name/`) change it to `base: "/repo-name/"` and update all absolute URLs in `index.html`, `robots.txt` and `sitemap.xml`.
+For a **project site** (`https://ukaukaa.github.io/repo-name/`) change it to `base: "/repo-name/"` and update all absolute URLs in `index.html`, `robots.txt` and `sitemap.xml`.
 
 ## Performance & accessibility notes
 
