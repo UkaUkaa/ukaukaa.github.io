@@ -70,7 +70,7 @@ export function Testimonials() {
             </div>
             <p className="mt-8 flex items-center gap-3 text-[0.85rem] text-paper">
               <span aria-hidden className="h-px w-6 bg-line-strong" />
-              {item.author}
+              {item.author[locale]}
             </p>
           </Reveal>
         ))}

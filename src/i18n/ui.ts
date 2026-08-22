@@ -36,22 +36,4 @@ export const ui: Record<Locale, UiStrings> = {
     },
     cursor: { view: 'Відкрити' },
   },
-
-  ru: {
-    meta: {
-      title: 'Александр Филинский — Software Engineer',
-      description: 'Александр Филинский — инженер-программист, создающий программное обеспечение, автоматизацию и цифровые продукты. Проекты, стек, опыт и контакты.',
-    },
-    nav: { work: 'Проекты', about: 'Обо мне', stack: 'Стек', testimonials: 'Отзывы', contact: 'Контакты', skip: 'Перейти к содержимому', openMenu: 'Открыть меню', closeMenu: 'Закрыть меню', backToTop: 'Наверх', language: 'Язык' },
-    hero: { scroll: 'Листать', intro: 'Вступление' },
-    sections: {
-      work: { label: 'Избранные проекты', title: 'Проекты, которые показывают, как я думаю и строю.', viewProject: 'Открыть проект', liveDemo: 'Демо', github: 'GitHub', technologies: 'Технологии', imagePlaceholder: 'изображение-заглушка', addImage: 'Добавить изображение проекта' },
-      about: { label: 'Обо мне', title: 'Кто стоит за работой.', specialties: 'Специализация' },
-      stack: { label: 'Стек', title: 'Инструменты, которые я использую, сгруппированные по назначению.' },
-      experience: { label: 'Опыт', title: 'Куда меня привела работа.' },
-      testimonials: { label: 'Отзывы', title: 'Что говорят клиенты после завершения работы.', reviews: 'отзывов', average: 'средняя оценка', success: 'успешных проектов', viewAll: 'Все отзывы на', rating: 'Оценка' },
-      contact: { label: 'Контакты' },
-    },
-    cursor: { view: 'Открыть' },
-  },
 };

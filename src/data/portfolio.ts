@@ -6,7 +6,6 @@
  *   • shared.ts          — links, email, technologies, stack tags (same in every language)
  *   • portfolio.en.ts    — English text
  *   • portfolio.uk.ts    — Ukrainian text
- *   • portfolio.ru.ts    — Russian text
  *   • ../i18n/ui.ts      — interface labels (nav, section titles, buttons)
  *
  *  This file only merges them into the `PortfolioData` shape components consume.
@@ -17,7 +16,6 @@ import { shared, type ProjectKey, type StackKey } from './shared';
 import type { About, ContactSection, Experience, PortfolioData, Profile, Project } from './types';
 import { en } from './portfolio.en';
 import { uk } from './portfolio.uk';
-import { ru } from './portfolio.ru';
 
 /** The translatable half of the content. Every locale file must satisfy this. */
 export interface LocalizedContent {
@@ -49,7 +47,6 @@ function build(content: LocalizedContent): PortfolioData {
 export const portfolioByLocale: Record<Locale, PortfolioData> = {
   en: build(en),
   uk: build(uk),
-  ru: build(ru),
 };
 
 export const navLinks = [

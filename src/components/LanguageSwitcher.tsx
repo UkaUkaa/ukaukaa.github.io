@@ -3,8 +3,8 @@ import { LOCALES, type Locale } from '../i18n/types';
 import { useLocale } from '../i18n/useLocale';
 import { cn } from '../utils/cn';
 
-const LABELS: Record<Locale, string> = { en: 'EN', uk: 'UK', ru: 'RU' };
-const NAMES: Record<Locale, string> = { en: 'English', uk: 'Українська', ru: 'Русский' };
+const LABELS: Record<Locale, string> = { en: 'EN', uk: 'UK' };
+const NAMES: Record<Locale, string> = { en: 'English', uk: 'Українська' };
 
 interface LanguageSwitcherProps {
   className?: string;

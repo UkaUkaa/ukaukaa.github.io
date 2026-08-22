@@ -2,7 +2,7 @@
 
 A production-ready, one-page developer portfolio designed as a premium digital experience: dark editorial layout, large typography, cinematic-but-restrained motion, custom cursor on desktop, and a fully static build that deploys to GitHub Pages automatically.
 
-All content is placeholder data in three languages (English, Ukrainian, Russian). Edit the files under `src/data/` to make it yours.
+Content is bilingual (English, Ukrainian). Edit the files under `src/data/` to make it yours.
 
 ## Stack
 
@@ -56,7 +56,6 @@ Open the printed local URL (default `http://localhost:5173`).
 │   │   ├── shared.ts              # Links, technologies (same in every language)
 │   │   ├── portfolio.en.ts        # English content
 │   │   ├── portfolio.uk.ts        # Ukrainian content
-│   │   ├── portfolio.ru.ts        # Russian content
 │   │   └── portfolio.ts           # Merges shared + localized content
 │   ├── i18n/                      # Locale context, switcher strings (ui.ts)
 │   ├── hooks/                     # media queries, smooth scroll, magnetic, active section
@@ -67,9 +66,9 @@ Open the printed local URL (default `http://localhost:5173`).
 └── vite.config.ts
 ```
 
-## Languages (EN / UK / RU)
+## Languages (EN / UK)
 
-The site is trilingual. The language is chosen in this order: `?lang=uk` query → saved choice (localStorage) → browser language → English. A switcher sits in the navigation (desktop) and in the mobile menu. `<html lang>`, `<title>` and the meta description update on switch.
+The site is bilingual. The language is chosen in this order: `?lang=uk` query → saved choice (localStorage) → browser language → English. A switcher sits in the navigation (desktop) and in the mobile menu. `<html lang>`, `<title>` and the meta description update on switch.
 
 Content is split into **language-independent** and **translated** files:
 
@@ -78,10 +77,9 @@ Content is split into **language-independent** and **translated** files:
 | `src/data/shared.ts` | Links, email, social profiles, project technologies / GitHub / demo URLs, stack tags |
 | `src/data/portfolio.en.ts` | All English text |
 | `src/data/portfolio.uk.ts` | All Ukrainian text |
-| `src/data/portfolio.ru.ts` | All Russian text |
 | `src/i18n/ui.ts` | Interface labels (nav, section titles, buttons, SEO title/description) |
 
-Adding a fourth language: add the code to `LOCALES` in `src/i18n/types.ts`, create `portfolio.xx.ts`, register it in `portfolioByLocale` (`src/data/portfolio.ts`) and in `ui.ts`, and add its label in `LanguageSwitcher.tsx`. TypeScript will flag anything you miss.
+Adding another language: add the code to `LOCALES` in `src/i18n/types.ts`, create `portfolio.xx.ts`, register it in `portfolioByLocale` (`src/data/portfolio.ts`) and in `ui.ts`, and add its label in `LanguageSwitcher.tsx`. TypeScript will flag anything you miss.
 
 ## Customisation
 
@@ -97,12 +95,12 @@ Adding a fourth language: add the code to `LOCALES` in `src/i18n/types.ts`, crea
 },
 ```
 
-2. In **each** of `portfolio.en.ts`, `portfolio.uk.ts`, `portfolio.ru.ts` add the same key with `title`, `description`, `year`, `category` (and optional `imageAlt`). The compiler errors until all three languages have the entry.
+2. In **both** `portfolio.en.ts` and `portfolio.uk.ts` add the same key with `title`, `description`, `year`, `category` (and optional `imageAlt`). The compiler errors until both languages have the entry.
 
 Leave `image` out to show the built-in placeholder. Use WebP/AVIF at ~1600px wide for a sharp 16:10 image under ~150 KB.
 
 ### Skills / stack
-Tags: `stackSkills` in `shared.ts`. Category names: `stackCategories` in each language file. Adding a category key to `shared.ts` requires a name in all three language files.
+Tags: `stackSkills` in `shared.ts`. Category names: `stackCategories` in each language file. Adding a category key to `shared.ts` requires a name in both language files.
 
 ### Name, bio, experience, contact
 Edit `profile`, `about`, `experience`, `contact` in each language file; `shortName`, `email` and `socials` in `shared.ts`.
