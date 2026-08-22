@@ -35,23 +35,26 @@ export const en: LocalizedContent = {
     },
   },
   projects: {
-    'project-01': {
-      title: 'Your Project',
-      description: 'Project description goes here. What problem it solves, who it is for and what made it interesting to build.',
-      year: '2026',
-      category: 'Web Application',
-    },
-    'project-02': {
-      title: 'Your Project',
-      description: 'Project description goes here. Keep it short, concrete and outcome-oriented.',
-      year: '2026',
-      category: 'Automation',
-    },
-    'project-03': {
-      title: 'Your Project',
-      description: 'Project description goes here. Replace this entry or add more — the layout adapts automatically.',
+    zkkbp: {
+      title: 'ZKKBP — College Website & LMS',
+      description: 'Official website of Zhytomyr Cooperative College of Business and Law, built from scratch and launched to production. Beyond the public site with news and admissions info it includes an admin panel, a student/teacher e-cabinet with schedules and grades, and a learning portal with courses. PageSpeed 90+: server-side caching, Gzip/Brotli compression, WebP images and lazy loading. SEO configured end to end — semantic markup, meta tags, sitemap and robots — so the college ranks well in search. Load-tested and stable under concurrent traffic.',
       year: '2025',
-      category: 'API / Backend',
+      category: 'Web Platform · LMS',
+      imageAlt: 'ZKKBP college website homepage',
+    },
+    djinni: {
+      title: 'Djinni Auto-Apply Bot',
+      description: 'A Selenium bot that applies to jobs on Djinni for the client around the clock. It signs in, walks through the subscribed job feeds page by page, skips companies from a blacklist, deduplicates vacancies in MongoDB so nothing is applied to twice, and submits a cover message automatically. Every successful application lands in a Telegram bot with a link; vacancies with extra screening questions are flagged for manual review. Runs unattended on a schedule, keeps CSV logs and supports remote browsers via Selenoid.',
+      year: '2024',
+      category: 'Automation · Bot',
+      imageAlt: 'Telegram bot feed with successful Djinni applications',
+    },
+    autocast: {
+      title: 'Autocast — Car Audio & Electronics Store',
+      description: 'Website and online store for a car audio, lighting and electronics service, built on Next.js 15 with Supabase. Full e-commerce flow: product catalog with filters and smart search, product pages with galleries, persistent cart, multi-step checkout with Nova Poshta delivery, user accounts with Google sign-in, and an admin panel for products, orders and analytics. Heavily optimised: server rendering with caching and revalidation, next/image with lazy loading, code splitting, Sentry monitoring and a Vitest + Playwright test suite. SEO done properly — per-page metadata, JSON-LD structured data, sitemap and robots.',
+      year: '2026',
+      category: 'E-commerce · Web Platform',
+      imageAlt: 'Autocast homepage with hero section and product search',
     },
   },
   stackCategories: {

@@ -1,4 +1,4 @@
-import { ArrowUpRight, Github, Plus } from 'lucide-react';
+import { ArrowUpRight, Github } from 'lucide-react';
 import { useLocale } from '../i18n/useLocale';
 import type { Project } from '../data/types';
 import { padIndex } from '../utils/format';
@@ -23,15 +23,6 @@ export function Work() {
           <ProjectBlock key={project.id} project={project} index={i} />
         ))}
 
-        {/* Empty-state hint — remove once you have added your real projects */}
-        <Reveal className="border-t border-line pt-8">
-          <div className="flex items-center gap-4 text-meta">
-            <Plus size={14} strokeWidth={1.5} />
-            <span>
-              {t.sections.work.addHint} <code className="text-paper-2">src/data/</code>
-            </span>
-          </div>
-        </Reveal>
       </div>
     </section>
   );
@@ -54,21 +45,26 @@ function ProjectBlock({ project, index }: { project: Project; index: number }) {
         amount={0.2}
         className={cn('md:col-span-7', flipped ? 'md:order-2 md:col-start-6' : 'md:order-1')}
       >
-        <a
-          href={primaryHref ?? '#work'}
-          target={primaryHref ? '_blank' : undefined}
-          rel="noopener noreferrer"
-          data-cursor="view"
-          aria-label={`${project.title} — ${t.sections.work.viewProject}`}
-          className="relative block aspect-[16/10] overflow-hidden rounded-sm border border-line"
-        >
-          <ProjectImage project={project} index={number} />
-          {/* Hover overlay + CTA */}
-          <div className="pointer-events-none absolute inset-0 bg-ink/0 transition-colors duration-700 group-hover:bg-ink/30" />
-          <div className="pointer-events-none absolute bottom-5 left-5 flex items-center gap-2 rounded-full bg-paper px-4 py-2 font-mono text-[0.65rem] uppercase tracking-[0.18em] text-ink opacity-0 translate-y-2 transition-all duration-500 ease-[var(--ease-out-expo)] group-hover:translate-y-0 group-hover:opacity-100">
-            {t.sections.work.viewProject} <ArrowUpRight size={12} strokeWidth={2} />
+        {primaryHref ? (
+          <a
+            href={primaryHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            data-cursor="view"
+            aria-label={`${project.title} — ${t.sections.work.viewProject}`}
+            className="relative block aspect-[16/10] overflow-hidden rounded-sm border border-line"
+          >
+            <ProjectImage project={project} index={number} />
+            <div className="pointer-events-none absolute inset-0 bg-ink/0 transition-colors duration-700 group-hover:bg-ink/30" />
+            <div className="pointer-events-none absolute bottom-5 left-5 flex items-center gap-2 rounded-full bg-paper px-4 py-2 font-mono text-[0.65rem] uppercase tracking-[0.18em] text-ink opacity-0 translate-y-2 transition-all duration-500 ease-[var(--ease-out-expo)] group-hover:translate-y-0 group-hover:opacity-100">
+              {t.sections.work.viewProject} <ArrowUpRight size={12} strokeWidth={2} />
+            </div>
+          </a>
+        ) : (
+          <div className="relative block aspect-[16/10] overflow-hidden rounded-sm border border-line">
+            <ProjectImage project={project} index={number} />
           </div>
-        </a>
+        )}
       </Reveal>
 
       {/* Text */}

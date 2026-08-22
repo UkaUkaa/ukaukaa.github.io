@@ -16,19 +16,19 @@ export const shared = {
   ] satisfies readonly SocialLink[],
   /** Per-project links and technologies, keyed by project id (same ids in every locale file). */
   projects: {
-    'project-01': {
-      technologies: ['Technology', 'Technology', 'Technology'],
-      github: 'https://github.com/USERNAME/project',
-      liveDemo: 'https://example.com',
-      // image: '/projects/project-01.webp',
+    zkkbp: {
+      technologies: ['Python', 'Flask', 'MongoDB', 'Jinja2', 'Gunicorn', 'Docker', 'Flask-Caching', 'Flask-Compress', 'SEO'],
+      liveDemo: 'https://zkkbp.com.ua',
+      image: '/projects/zkkbp.webp',
     },
-    'project-02': {
-      technologies: ['Technology', 'Technology'],
-      github: 'https://github.com/USERNAME/project',
+    autocast: {
+      technologies: ['Next.js 15', 'React 19', 'TypeScript', 'Tailwind CSS', 'Supabase', 'PostgreSQL', 'Zustand', 'Framer Motion', 'Nova Poshta API', 'Sentry', 'Playwright', 'SEO'],
+      liveDemo: 'https://autocast.com.ua',
+      image: '/projects/autocast.webp',
     },
-    'project-03': {
-      technologies: ['Technology', 'Technology', 'Technology', 'Technology'],
-      liveDemo: 'https://example.com',
+    djinni: {
+      technologies: ['Python', 'Selenium', 'Requests', 'MongoDB', 'Pandas', 'Telegram Bot API', 'Selenoid'],
+      image: '/projects/djinni.webp',
     },
   },
   /** Stack tags are usually technology names — identical in all languages. */
