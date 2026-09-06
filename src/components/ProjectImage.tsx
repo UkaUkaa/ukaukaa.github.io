@@ -53,10 +53,19 @@ export function ProjectImage({ project, index }: ProjectImageProps) {
       >
         16 : 10
       </span>
-      <div className="absolute inset-0 grid place-items-center">
-        <div className="flex flex-col items-center gap-3 text-mute-2">
-          <ImagePlus size={28} strokeWidth={1} />
-          <span className="font-mono text-[0.65rem] uppercase tracking-[0.2em]">{t.sections.work.addImage}</span>
+      <div className="absolute inset-0 grid place-items-center px-8 text-center">
+        <div className="flex flex-col items-center gap-3">
+          {/* The "add image" hint is a reminder for the author; visitors see the quiet panel. */}
+          {import.meta.env.DEV && (
+            <>
+              <ImagePlus size={28} strokeWidth={1} className="text-mute-2" />
+              <span className="font-mono text-[0.65rem] uppercase tracking-[0.2em] text-mute-2">
+                {t.sections.work.addImage}
+              </span>
+            </>
+          )}
+          <span className="max-w-[24ch] text-[1.05rem] leading-snug text-mute">{project.title}</span>
+          <span className="text-meta">{project.category}</span>
         </div>
       </div>
     </div>

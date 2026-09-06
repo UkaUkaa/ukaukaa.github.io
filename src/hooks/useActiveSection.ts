@@ -11,7 +11,12 @@ export function useActiveSection(ids: readonly string[]): string {
     const elements = ids
       .map((id) => document.getElementById(id))
       .filter((el): el is HTMLElement => el !== null);
-    if (elements.length === 0) return;
+    // Off the home page there is nothing to track — clear the highlight instead of
+    // leaving the last section marked as current.
+    if (elements.length === 0) {
+      setActive('');
+      return;
+    }
 
     const observer = new IntersectionObserver(
       (entries) => {

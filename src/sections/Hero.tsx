@@ -72,11 +72,13 @@ export function Hero() {
         </motion.div>
 
         <div className="grid gap-10 lg:grid-cols-12 lg:items-end">
-          <motion.div style={{ y: titleY }} className="lg:col-span-8">
+          {/* `@container` lets the title scale with its own column, not the viewport — on
+              lg+ it only gets 8/12 of the width, and a vw-based size overflowed the column. */}
+          <motion.div style={{ y: titleY }} className="@container lg:col-span-8">
             <motion.p {...fadeIn(0.2)} className="mb-5 text-[0.95rem] tracking-[-0.01em] text-paper-2 md:text-base">
               {profile.name}
             </motion.p>
-            <h1 className="text-display text-[clamp(3.4rem,13.5vw,11.5rem)] text-paper">
+            <h1 className="text-display text-[clamp(3.4rem,min(13.5vw,18.5cqw),11.5rem)] text-paper">
               <LineReveal lines={profile.titleLines} immediate delay={0.25} stagger={0.12} />
             </h1>
           </motion.div>

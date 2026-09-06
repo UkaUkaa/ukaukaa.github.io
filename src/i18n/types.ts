@@ -8,12 +8,25 @@ export interface UiStrings {
   nav: { work: string; about: string; stack: string; testimonials: string; contact: string; skip: string; openMenu: string; closeMenu: string; backToTop: string; language: string };
   hero: { scroll: string; intro: string };
   sections: {
-    work: { label: string; title: string; viewProject: string; liveDemo: string; github: string; technologies: string; imagePlaceholder: string; addImage: string };
+    work: { label: string; title: string; viewProject: string; liveDemo: string; github: string; technologies: string; imagePlaceholder: string; addImage: string; showAll: string; showLess: string };
     about: { label: string; title: string; specialties: string };
     stack: { label: string; title: string };
     experience: { label: string; title: string };
     testimonials: { label: string; title: string; reviews: string; average: string; success: string; viewAll: string; rating: string };
     contact: { label: string };
+  };
+  /** Labels for a project's own page. */
+  project: {
+    back: string;
+    overview: string;
+    details: string;
+    features: string;
+    engineering: string;
+    gallery: string;
+    stack: string;
+    next: string;
+    caseStudy: string;
+    breadcrumb: string;
   };
   cursor: { view: string };
 }

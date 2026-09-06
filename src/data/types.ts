@@ -42,6 +42,34 @@ export interface About {
   };
 }
 
+/** One screenshot on a project page: the file plus its localized caption. */
+export interface ProjectShot {
+  src: string;
+  caption: string;
+}
+
+/** A single capability of the product, shown as a numbered card on the project page. */
+export interface ProjectFeature {
+  title: string;
+  text: string;
+}
+
+/** Everything that only the dedicated /projects/<id> page shows. */
+export interface ProjectDetail {
+  /** One sentence under the title — what the product is, in plain words. */
+  tagline: string;
+  /** Long-form paragraphs: the problem, the solution, what shipped. */
+  overview: readonly string[];
+  /** Facts column: role, timeline, scope, status… */
+  facts: readonly { label: string; value: string }[];
+  /** What the product does. */
+  features: readonly ProjectFeature[];
+  /** Engineering notes — the interesting technical decisions. */
+  engineering: readonly ProjectFeature[];
+  /** Screenshots, in the order they should be shown. */
+  gallery: readonly ProjectShot[];
+}
+
 export interface Project {
   id: string;
   title: string;
@@ -54,6 +82,8 @@ export interface Project {
   imageAlt?: string;
   github?: string;
   liveDemo?: string;
+  /** Content of the project's own page. */
+  detail: ProjectDetail;
 }
 
 export interface SkillCategory {

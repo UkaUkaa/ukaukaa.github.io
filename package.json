@@ -6,7 +6,7 @@
   "description": "Premium one-page developer portfolio built with React, TypeScript, Vite, Tailwind CSS and Framer Motion.",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc -b && vite build && node scripts/prerender.mjs",
     "preview": "vite preview",
     "lint": "eslint .",
     "typecheck": "tsc -b --noEmit"

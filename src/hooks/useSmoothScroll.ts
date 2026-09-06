@@ -14,6 +14,15 @@ export function scrollToHash(hash: string): void {
   }
 }
 
+/** Jumps to the top of the page — used when navigating between pages. */
+export function scrollToTop(): void {
+  if (lenisInstance) {
+    lenisInstance.scrollTo(0, { immediate: true });
+  } else {
+    window.scrollTo({ top: 0, behavior: 'auto' });
+  }
+}
+
 /**
  * Mounts Lenis smooth scrolling. Disabled for reduced-motion users and on coarse pointers
  * where native momentum scrolling is the better experience.

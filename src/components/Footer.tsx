@@ -1,6 +1,6 @@
 import { ArrowUp } from 'lucide-react';
 import { useLocale } from '../i18n/useLocale';
-import { scrollToHash } from '../hooks/useSmoothScroll';
+import { scrollToTop } from '../hooks/useSmoothScroll';
 import { SocialIcon } from './SocialIcon';
 
 export function Footer() {
@@ -37,7 +37,7 @@ export function Footer() {
           <p className="text-meta">© {year} {profile.name}</p>
           <button
             type="button"
-            onClick={() => scrollToHash('#hero')}
+            onClick={() => scrollToTop()}
             data-cursor="link"
             aria-label={t.nav.backToTop}
             className="grid size-10 place-items-center rounded-full border border-line-strong text-paper transition-colors hover:border-paper"

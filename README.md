@@ -30,7 +30,7 @@ Open the printed local URL (default `http://localhost:5173`).
 | Command             | What it does                                      |
 | ------------------- | ------------------------------------------------- |
 | `npm run dev`       | Start the Vite dev server with HMR                |
-| `npm run build`     | Type-check (`tsc -b`) then build to `dist/`       |
+| `npm run build`     | Type-check (`tsc -b`), build to `dist/`, prerender project pages |
 | `npm run preview`   | Serve the production build locally                |
 | `npm run lint`      | Run ESLint                                        |
 | `npm run typecheck` | Type-check only                                   |
@@ -45,12 +45,15 @@ Open the printed local URL (default `http://localhost:5173`).
 │   ├── favicon.svg
 │   ├── apple-touch-icon.png
 │   ├── og-image.png               # 1200×630 social preview (placeholder)
+│   ├── projects/                 # Project images and screenshots (one folder per project)
 │   ├── robots.txt
-│   ├── sitemap.xml
 │   └── site.webmanifest
+├── scripts/prerender.mjs          # Post-build: an HTML file per project page, 404.html, sitemap
 ├── src/
-│   ├── components/                # Reusable UI (Navigation, Cursor, Reveal, …)
+│   ├── components/                # Reusable UI (Navigation, Cursor, Reveal, Link, …)
 │   ├── sections/                  # Hero, Work, About, Stack, Experience, Contact
+│   ├── pages/ProjectPage.tsx      # /projects/<id>/ — one page per project
+│   ├── router/router.ts           # Tiny history router (home + project pages)
 │   ├── data/
 │   │   ├── types.ts               # Typed content model
 │   │   ├── shared.ts              # Links, technologies (same in every language)
@@ -83,21 +86,40 @@ Adding another language: add the code to `LOCALES` in `src/i18n/types.ts`, creat
 
 ## Customisation
 
+### Pages
+
+Every project has its own page at `/projects/<id>/` with the cover, a long-form description,
+what the product does, the engineering notes, the screenshots and the stack. The home page links
+to it from the project card, its title and the "Case study" link.
+
+`npm run build` writes a real `dist/projects/<id>/index.html` for each one — with its own title,
+description, canonical and Open Graph tags — plus `dist/404.html` and a `dist/sitemap.xml` listing
+every page. Nothing is duplicated by hand: `scripts/prerender.mjs` reads the same content files
+the app uses.
+
 ### Adding a project
-1. In `src/data/shared.ts` add a key to `projects` with the technologies and links:
+1. In `src/data/shared.ts` add a key to `projects` with the technologies, links and screenshots:
 
 ```ts
 'my-app': {
   technologies: ['TypeScript', 'React', 'FastAPI'],
   github: 'https://github.com/USERNAME/my-app',
   liveDemo: 'https://my-app.example.com',
-  image: '/projects/my-app.webp',   // put the file in public/projects/
+  image: '/projects/my-app.webp',   // card image; put the file in public/projects/
+  gallery: [                        // screenshots, in order; the first one is the page cover
+    { key: 'home', src: '/projects/my-app/home.webp' },
+    { key: 'admin', src: '/projects/my-app/admin.webp' },
+  ],
 },
 ```
 
-2. In **both** `portfolio.en.ts` and `portfolio.uk.ts` add the same key with `title`, `description`, `year`, `category` (and optional `imageAlt`). The compiler errors until both languages have the entry.
+2. In **both** `portfolio.en.ts` and `portfolio.uk.ts` add the same key with `title`, `description`,
+   `year`, `category`, optional `imageAlt`, and a `detail` block: `tagline`, `overview`, `facts`,
+   `features`, `engineering` and a `gallery` object with one caption per `key` above. The compiler
+   errors until both languages have the entry.
 
-Leave `image` out to show the built-in placeholder. Use WebP/AVIF at ~1600px wide for a sharp 16:10 image under ~150 KB.
+Leave `image` and `gallery` out to show the built-in placeholder — the page then simply has no
+screenshots. Use WebP at ~1600px wide for a sharp 16:10 image under ~150 KB.
 
 ### Skills / stack
 Tags: `stackSkills` in `shared.ts`. Category names: `stackCategories` in each language file. Adding a category key to `shared.ts` requires a name in both language files.
@@ -114,7 +136,7 @@ SEO lives in the following files:
 
 - `index.html` — title, description, keywords, author, canonical, Open Graph, Twitter, JSON-LD (`Person` + `WebSite`)
 - `public/robots.txt` — sitemap URL
-- `public/sitemap.xml` — site URL and `lastmod`
+- `dist/sitemap.xml` — generated at build time from the project list (`scripts/prerender.mjs`)
 - `public/site.webmanifest` — app name
 - `src/data/shared.ts` — social links
 - `src/i18n/ui.ts` — per-language `<title>` and meta description (applied on language switch)
@@ -131,7 +153,8 @@ This project targets a **user site**: `https://ukaukaa.github.io/`.
 4. Every push to `main` runs `.github/workflows/deploy.yml`: install → lint → build → deploy `dist/`.
 
 `vite.config.ts` uses `base: "/"`, which is correct for a user site.
-For a **project site** (`https://ukaukaa.github.io/repo-name/`) change it to `base: "/repo-name/"` and update all absolute URLs in `index.html`, `robots.txt` and `sitemap.xml`.
+For a **project site** (`https://ukaukaa.github.io/repo-name/`) change it to `base: "/repo-name/"` and update all absolute URLs in `index.html` and `robots.txt` (the sitemap follows the canonical
+URL in `index.html` automatically).
 
 ## Performance & accessibility notes
 

@@ -5,17 +5,22 @@ import { navLinks } from '../data/portfolio';
 import { useLocale } from '../i18n/useLocale';
 import { useActiveSection } from '../hooks/useActiveSection';
 import { scrollToHash } from '../hooks/useSmoothScroll';
+import { href as routeHref, navigate, useRoute } from '../router/router';
 import { cn } from '../utils/cn';
 import { LanguageSwitcher } from './LanguageSwitcher';
 
 const SECTION_IDS = navLinks.map((l) => l.id);
+/** Off the home page there is no section to highlight — a stable empty array keeps the effect quiet. */
+const NO_SECTIONS: readonly string[] = [];
 
 export function Navigation() {
   const { t, data } = useLocale();
   const { profile, socials } = data;
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const active = useActiveSection(SECTION_IDS);
+  const route = useRoute();
+  const onHome = route.name === 'home';
+  const active = useActiveSection(onHome ? SECTION_IDS : NO_SECTIONS);
   const { scrollY } = useScroll();
 
   useMotionValueEvent(scrollY, 'change', (v) => setScrolled(v > 24));
@@ -31,11 +36,16 @@ export function Navigation() {
     };
   }, [open]);
 
-  const handleAnchor = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+  // On the home page these are in-page anchors; anywhere else they navigate home first.
+  const handleAnchor = (e: React.MouseEvent<HTMLAnchorElement>, hash: string) => {
     e.preventDefault();
     setOpen(false);
-    history.replaceState(null, '', href);
-    scrollToHash(href);
+    if (onHome) {
+      history.replaceState(null, '', hash);
+      scrollToHash(hash);
+    } else {
+      navigate(`/${hash}`);
+    }
   };
 
   return (
@@ -53,7 +63,7 @@ export function Navigation() {
         transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
       >
         <a
-          href="#hero"
+          href={routeHref('/#hero')}
           onClick={(e) => handleAnchor(e, '#hero')}
           data-cursor="link"
           aria-label={`${profile.name} — ${t.nav.backToTop}`}
@@ -78,7 +88,7 @@ export function Navigation() {
               return (
                 <li key={link.id} className="relative">
                   <a
-                    href={link.href}
+                    href={routeHref(`/${link.href}`)}
                     onClick={(e) => handleAnchor(e, link.href)}
                     data-cursor="link"
                     aria-current={isActive ? 'location' : undefined}
@@ -139,7 +149,7 @@ export function Navigation() {
                   transition={{ delay: 0.08 + i * 0.06, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                 >
                   <a
-                    href={link.href}
+                    href={routeHref(`/${link.href}`)}
                     onClick={(e) => handleAnchor(e, link.href)}
                     className="flex items-baseline gap-4 border-b border-line py-4"
                   >
